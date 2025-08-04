@@ -94,3 +94,30 @@ footer {
   opacity: 1;
   transform: none;
 }
+
+
+/* Mobile menu */
+#menu-toggle {
+  display: none;
+  background: #2e7d32;
+  color: white;
+  border: none;
+  font-size: 20px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  #menu-toggle {
+    display: block;
+  }
+  #nav-links {
+    display: none;
+    flex-direction: column;
+    background: #2c3e50;
+    padding: 10px 0;
+  }
+  #nav-links.open {
+    display: flex;
+  }
+}
