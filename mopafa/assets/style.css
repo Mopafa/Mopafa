@@ -1,0 +1,87 @@
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #fefefe;
+  color: #333;
+  scroll-behavior: smooth;
+}
+.hero {
+  background: url('https://images.unsplash.com/photo-1601233744034-6d58b3623c19?auto=format&fit=crop&w=1400&q=80') no-repeat center center/cover;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.overlay {
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+.navbar {
+  background: #2c3e50;
+  padding: 10px;
+  text-align: center;
+}
+.navbar a {
+  color: white;
+  margin: 0 15px;
+  text-decoration: none;
+}
+.section {
+  padding: 60px 20px;
+  max-width: 960px;
+  margin: auto;
+}
+.card {
+  background: #e8f5e9;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 10px;
+  flex: 1;
+  text-align: center;
+}
+.steps {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+form input, form textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+}
+form button {
+  background: #2e7d32;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+footer {
+  background: #f4f4f4;
+  text-align: center;
+  padding: 20px;
+}
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+}
+.fade-in.delay-1 { animation-delay: 0.5s; }
+.fade-in.delay-2 { animation-delay: 1s; }
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s ease forwards;
+}
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
