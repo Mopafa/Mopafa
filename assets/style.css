@@ -1,13 +1,35 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+body {
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  background: #fff;
+  color: #333;
+}
 
-* { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
-body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; background: #fff; color: #333; }
 nav {
   position: sticky;
   top: 0;
   background: #2c3e50;
   padding: 10px 0;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
   z-index: 999;
+}
+nav img,
+.logo {
+  margin-left: 20px;
+  max-height: 60px;
+  height: auto;
+  width: auto;
+  max-width: 200px;
+  padding: 5px 10px;
 }
 nav a {
   color: #fff;
@@ -18,6 +40,7 @@ nav a {
 nav a:hover {
   color: #81c784;
 }
+
 section {
   padding: 60px 20px;
   max-width: 960px;
@@ -32,6 +55,7 @@ h1, h2 {
   margin-top: 20px;
   border-radius: 8px;
 }
+
 .card-grid {
   display: flex;
   flex-wrap: wrap;
@@ -45,6 +69,7 @@ h1, h2 {
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
+
 form input, form textarea {
   width: 100%;
   padding: 10px;
@@ -59,16 +84,17 @@ form button {
   border: none;
   cursor: pointer;
   border-radius: 4px;
+  transition: background 0.3s ease;
 }
+form button:focus, .btn:focus {
+  outline: 2px dashed #81c784;
+}
+
 footer {
   background: #f4f4f4;
   text-align: center;
   padding: 20px;
   margin-top: 40px;
-}
-@media (max-width: 768px) {
-  .card-grid { flex-direction: column; }
-  nav a { display: block; margin: 10px 0; }
 }
 
 .btn {
@@ -79,6 +105,7 @@ footer {
   text-decoration: none;
   margin-top: 10px;
   border-radius: 4px;
+  transition: background 0.3s ease;
 }
 .btn:hover {
   background: #1b5e20;
@@ -95,77 +122,53 @@ footer {
   transform: none;
 }
 
-
-/* Mobile menu */
-#menu-toggle {
-  display: none;
-  background: #2e7d32;
-  color: white;
-  border: none;
-  font-size: 20px;
-  padding: 10px;
-  cursor: pointer;
+/* Sticky anchor offset */
+html {
+  scroll-padding-top: 70px;
 }
 
+/* Mobile adjustments */
 @media (max-width: 768px) {
-  #menu-toggle {
+  .card-grid,
+  .feature-grid {
+    flex-direction: column;
+  }
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  nav a {
     display: block;
+    margin: 10px 20px;
+    font-size: 16px;
   }
   #nav-links {
     display: none;
     flex-direction: column;
     background: #2c3e50;
     padding: 10px 0;
+    width: 100%;
+    padding-left: 20px;
   }
   #nav-links.open {
     display: flex;
   }
-}
-
-
-/* Navbar layout with logo */
-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-nav img {
-  margin-left: 20px;
-  max-height: 40px;
-  height: auto;
-  width: auto;
-}
-
-/* Scroll padding for sticky nav anchor fix */
-html {
-  scroll-padding-top: 70px;
-}
-
-/* Accessibility improvements */
-form button, .btn {
-  transition: background 0.3s ease;
-}
-form button:focus, .btn:focus {
-  outline: 2px dashed #81c784;
-}
-
-/* Mobile nav cleanup */
-@media (max-width: 768px) {
-  nav {
-    flex-direction: column;
-    align-items: flex-start;
+  #menu-toggle {
+    display: block;
+    background: #2e7d32;
+    color: white;
+    border: none;
+    font-size: 20px;
+    padding: 10px;
+    cursor: pointer;
   }
-  #nav-links a {
-    margin: 10px 20px;
-    font-size: 16px;
-  }
-  #nav-links {
-    width: 100%;
-    padding-left: 20px;
+  .logo {
+    max-height: 50px;
+    max-width: 160px;
   }
 }
 
+/* Feature section */
 .feature-grid {
   display: flex;
   flex-wrap: wrap;
@@ -187,9 +190,4 @@ form button:focus, .btn:focus {
 }
 .feature-card p {
   font-size: 0.95rem;
-}
-@media (max-width: 768px) {
-  .feature-grid {
-    flex-direction: column;
-  }
 }
