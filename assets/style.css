@@ -1,6 +1,15 @@
-
-* { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
-body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; background: #fff; color: #333; }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+body {
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  background: #fff;
+  color: #333;
+}
 nav {
   position: sticky;
   top: 0;
@@ -8,6 +17,16 @@ nav {
   padding: 10px 0;
   text-align: center;
   z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+nav img {
+  margin-left: 20px;
+  max-height: 40px;
+  height: auto;
+  width: auto;
 }
 nav a {
   color: #fff;
@@ -59,6 +78,10 @@ form button {
   border: none;
   cursor: pointer;
   border-radius: 4px;
+  transition: background 0.3s ease;
+}
+form button:focus, .btn:focus {
+  outline: 2px dashed #81c784;
 }
 footer {
   background: #f4f4f4;
@@ -66,11 +89,6 @@ footer {
   padding: 20px;
   margin-top: 40px;
 }
-@media (max-width: 768px) {
-  .card-grid { flex-direction: column; }
-  nav a { display: block; margin: 10px 0; }
-}
-
 .btn {
   display: inline-block;
   background: #2e7d32;
@@ -79,11 +97,11 @@ footer {
   text-decoration: none;
   margin-top: 10px;
   border-radius: 4px;
+  transition: background 0.3s ease;
 }
 .btn:hover {
   background: #1b5e20;
 }
-
 .fade-in-section {
   opacity: 0;
   transform: translateY(20px);
@@ -94,8 +112,6 @@ footer {
   opacity: 1;
   transform: none;
 }
-
-
 /* Mobile menu */
 #menu-toggle {
   display: none;
@@ -106,8 +122,14 @@ footer {
   padding: 10px;
   cursor: pointer;
 }
-
 @media (max-width: 768px) {
+  .card-grid {
+    flex-direction: column;
+  }
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
   #menu-toggle {
     display: block;
   }
@@ -116,8 +138,18 @@ footer {
     flex-direction: column;
     background: #2c3e50;
     padding: 10px 0;
+    width: 100%;
+    padding-left: 20px;
   }
   #nav-links.open {
     display: flex;
   }
+  #nav-links a {
+    margin: 10px 20px;
+    font-size: 16px;
+  }
+}
+/* Scroll padding for sticky nav anchor fix */
+html {
+  scroll-padding-top: 70px;
 }
