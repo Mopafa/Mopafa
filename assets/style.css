@@ -118,7 +118,7 @@ body.has-cta { padding-bottom: 64px; }
   * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
 
-/* SLIDESHOW */
+
 .slideshow { position: relative; height: 100vh; overflow: hidden; }
 .slide {
   position: absolute; inset: 0;
