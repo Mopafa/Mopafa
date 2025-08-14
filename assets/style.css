@@ -14,13 +14,14 @@ nav {
   z-index: 999;
 }
 .brand { display: flex; align-items: center; text-decoration: none; }
-nav img.logo { height: 100px; width: auto; margin-left: 12px; padding: 5px 10px; }
+/* sane logo sizes */
+nav img.logo { height: 60px; width: auto; margin-left: 12px; padding: 5px 10px; }
 #menu-toggle { display: none; background: #2e7d32; color: #fff; border: none; font-size: 20px; padding: 10px; cursor: pointer; }
 #nav-links { display: flex; align-items: center; gap: 16px; padding-right: 14px; }
 #nav-links a { color: #fff; text-decoration: none; font-weight: 700; }
 #nav-links a:hover { color: #81c784; }
 
-/* Sections */
+/* Sections (default) */
 section { padding: 60px 20px; max-width: 960px; margin: auto; }
 h1, h2 { color: #2e7d32; margin-bottom: 20px; }
 .section-img { max-width: 100%; margin-top: 20px; border-radius: 8px; }
@@ -63,7 +64,7 @@ footer { background: #f4f4f4; text-align: center; padding: 20px; margin-top: 40p
 }
 .fade-in-section.is-visible { opacity: 1; transform: none; }
 
-/* Sticky CTA (moved from inline) */
+/* Sticky CTA */
 :root { --safe-bottom: env(safe-area-inset-bottom); }
 .cta-bar {
   position: fixed; bottom: 0; left: 0; width: 100%;
@@ -71,36 +72,48 @@ footer { background: #f4f4f4; text-align: center; padding: 20px; margin-top: 40p
   z-index: 999; font-size: 16px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
 }
 .cta-bar .btn { background: #4caf50; font-weight: 700; }
-
-/* Prevent CTA overlap */
 body.has-cta { padding-bottom: 64px; }
 
-/* Responsive map */
+/* Map */
 .map-wrap { position: relative; width: 100%; padding-top: 56.25%; border: 0; margin-top: 10px; }
 .map-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 
+/* ===== HOME HERO (full‑bleed) ===== */
+/* IMPORTANT: style.css is inside /assets, so the path is just 'managed.webp' */
+#home {
+  position: relative;
+  width: 100%;
+  max-width: none;      /* override the generic section constraint */
+  margin: 0;            /* full-bleed */
+  padding: 100px 20px;  /* spacing for content */
+  min-height: 100vh;    /* take full viewport height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #fff;
+  background: url('managed.webp') no-repeat center center;
+  background-size: cover;
+}
+#home::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.35); /* overlay for readability */
+}
+#home > * { position: relative; }
+#home h1, #home p { color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+
 /* Mobile adjustments */
 @media (max-width: 768px) {
-  nav img.logo { height: 150px; }
+  nav img.logo { height: 44px; }       /* smaller logo on mobile */
   #menu-toggle { display: block; }
   #nav-links { display: none; flex-direction: column; background: #2c3e50; padding: 10px 0 10px 20px; width: 100%; }
   #nav-links.open { display: flex; }
   .card-grid, .feature-grid { flex-direction: column; }
-  section { padding: 36px 16px; }
-}
-#home {
-  background: url('assets/managed.webp') no-repeat center center;
-  background-size: cover;
-  color: white; /* Ensure text is readable */
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
-  padding: 100px 20px; /* Adjust spacing if needed */
-  min-height: 100vh; /* Full screen height */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  section { padding: 36px 16px; }      /* default sections */
+  #home { padding: 80px 16px; }        /* hero spacing on mobile */
 }
 
-/* Reduced motion preference */
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
