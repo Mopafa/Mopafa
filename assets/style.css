@@ -88,6 +88,17 @@ body.has-cta { padding-bottom: 64px; }
   .card-grid, .feature-grid { flex-direction: column; }
   section { padding: 36px 16px; }
 }
+#home {
+  background: url('assets/managed.webp') no-repeat center center;
+  background-size: cover;
+  color: white; /* Ensure text is readable */
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+  padding: 100px 20px; /* Adjust spacing if needed */
+  min-height: 100vh; /* Full screen height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
 /* Reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
