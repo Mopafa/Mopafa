@@ -29,89 +29,103 @@ document.addEventListener('DOMContentLoaded', () => {
   const cta = document.querySelector('.cta-bar');
   if (cta) document.body.classList.add('has-cta');
 
-  /* ========= Home slideshow ========= */
+  /* ========= Home slideshow with dynamic captions ========= */
   const home = document.querySelector('#home');
-  const slides = home ? home.querySelectorAll('.slide') : [];
-  const prev = home ? home.querySelector('.prev') : null;
-  const next = home ? home.querySelector('.next') : null;
+  if (!home) return;
 
-  if (slides.length > 0) {
-    let index = 0;
-    let autoTimer = null;
-    const AUTOPLAY_MS = 0; // set to e.g. 6000 to enable autoplay
+  const slides = Array.from(home.querySelectorAll('.slide'));
+  const prev = home.querySelector('.prev');
+  const next = home.querySelector('.next');
+  const titleEl = document.getElementById('hero-title');
+  const descEl  = document.getElementById('hero-desc');
 
-    function showSlide(n) {
-      slides.forEach((slide, i) => {
-        slide.classList.toggle('active', i === n);
-        slide.setAttribute('aria-hidden', i === n ? 'false' : 'true');
-      });
-    }
+  if (slides.length === 0 || !titleEl || !descEl) return;
 
-    function changeSlide(step) {
-      index = (index + step + slides.length) % slides.length;
-      showSlide(index);
-      restartAutoplay();
-    }
+  let index = 0;
+  let autoTimer = null;
+  const AUTOPLAY_MS = 0; // set to e.g. 6000 for autoplay
 
-    function restartAutoplay() {
-      if (AUTOPLAY_MS > 0) {
-        clearInterval(autoTimer);
-        autoTimer = setInterval(() => changeSlide(1), AUTOPLAY_MS);
-      }
-    }
+  function applyCaption(fromUser = false) {
+    const s = slides[index];
+    const title = s.getAttribute('data-title') || '';
+    const desc  = s.getAttribute('data-desc')  || '';
 
-    // Init
-    slides.forEach(s => s.setAttribute('role', 'img'));
-    showSlide(index);
-    restartAutoplay();
+    // simple reflow to retrigger CSS fadeUp animation
+    const caption = titleEl.parentElement;
+    caption.classList.remove('animate');
+    void caption.offsetWidth; // reflow
+    titleEl.textContent = title;
+    descEl.textContent  = desc;
+    caption.classList.add('animate');
 
-    // Arrow click
-    if (prev) prev.addEventListener('click', () => changeSlide(-1));
-    if (next) next.addEventListener('click', () => changeSlide(1));
+    if (fromUser) restartAutoplay();
+  }
 
-    // Keyboard arrows when #home is in view
-    document.addEventListener('keydown', (e) => {
-      if (!isHomeInView()) return;
-      if (e.key === 'ArrowLeft') { e.preventDefault(); changeSlide(-1); }
-      if (e.key === 'ArrowRight') { e.preventDefault(); changeSlide(1); }
+  function showSlide(n, fromUser = false) {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === n);
+      slide.setAttribute('aria-hidden', i === n ? 'false' : 'true');
     });
+    applyCaption(fromUser);
+  }
 
-    // Basic touch swipe (mobile)
-    let touchStartX = null, touchStartY = null;
-    const SWIPE_THRESHOLD = 40; // px
-    home.addEventListener('touchstart', (e) => {
-      const t = e.touches[0];
-      touchStartX = t.clientX;
-      touchStartY = t.clientY;
-    }, { passive: true });
+  function changeSlide(step) {
+    index = (index + step + slides.length) % slides.length;
+    showSlide(index, true);
+  }
 
-    home.addEventListener('touchend', (e) => {
-      if (touchStartX === null || touchStartY === null) return;
-      const t = e.changedTouches[0];
-      const dx = t.clientX - touchStartX;
-      const dy = t.clientY - touchStartY;
-      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > SWIPE_THRESHOLD) {
-        changeSlide(dx > 0 ? -1 : 1);
-      }
-      touchStartX = touchStartY = null;
-    });
-
-    function isHomeInView() {
-      const rect = home.getBoundingClientRect();
-      return rect.bottom > 0 && rect.top < window.innerHeight;
+  function restartAutoplay() {
+    if (AUTOPLAY_MS > 0) {
+      clearInterval(autoTimer);
+      autoTimer = setInterval(() => changeSlide(1), AUTOPLAY_MS);
     }
+  }
 
-    /* ========= Mobile dynamic-height fallback =========
-       Some older browsers ignore 100dvh; use JS height on small screens. */
-    const slideshow = home.querySelector('.slideshow');
-    function setHeroHeight() {
-      if (!slideshow) return;
-      slideshow.style.height = window.innerHeight + 'px';
+  // Init
+  slides.forEach(s => s.setAttribute('role', 'img'));
+  showSlide(index, false);
+  restartAutoplay();
+
+  // Arrow click
+  if (prev) prev.addEventListener('click', () => changeSlide(-1));
+  if (next) next.addEventListener('click', () => changeSlide(1));
+
+  // Keyboard arrows when #home is visible
+  document.addEventListener('keydown', (e) => {
+    if (!isHomeInView()) return;
+    if (e.key === 'ArrowLeft') { e.preventDefault(); changeSlide(-1); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); changeSlide(1); }
+  });
+
+  // Touch swipe
+  let sx=null, sy=null; const SWIPE=40;
+  home.addEventListener('touchstart', (e) => {
+    const t = e.touches[0]; sx=t.clientX; sy=t.clientY;
+  }, { passive:true });
+  home.addEventListener('touchend', (e) => {
+    if (sx===null || sy===null) return;
+    const t = e.changedTouches[0];
+    const dx = t.clientX - sx; const dy = t.clientY - sy;
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > SWIPE) {
+      changeSlide(dx > 0 ? -1 : 1);
     }
-    if (slideshow && window.matchMedia('(max-width: 768px)').matches) {
-      setHeroHeight();
-      window.addEventListener('resize', setHeroHeight);
-      window.addEventListener('orientationchange', setHeroHeight);
-    }
+    sx = sy = null;
+  });
+
+  function isHomeInView() {
+    const r = home.getBoundingClientRect();
+    return r.bottom > 0 && r.top < window.innerHeight;
+  }
+
+  /* ========= Mobile dynamic-height fallback ========= */
+  const slideshow = home.querySelector('.slideshow');
+  function setHeroHeight() {
+    if (!slideshow) return;
+    slideshow.style.height = window.innerHeight + 'px';
+  }
+  if (slideshow && window.matchMedia('(max-width: 768px)').matches) {
+    setHeroHeight();
+    window.addEventListener('resize', setHeroHeight);
+    window.addEventListener('orientationchange', setHeroHeight);
   }
 });
