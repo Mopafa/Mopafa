@@ -22,11 +22,35 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.15 });
     els.forEach(el => io.observe(el));
   } else {
-    // Fallback
     els.forEach(el => el.classList.add('is-visible'));
   }
 
   // Ensure body bottom padding if CTA exists
   const cta = document.querySelector('.cta-bar');
   if (cta) document.body.classList.add('has-cta');
+
+  // SLIDESHOW LOGIC
+  const slides = document.querySelectorAll('#home .slide');
+  const prev = document.querySelector('#home .prev');
+  const next = document.querySelector('#home .next');
+  let index = 0;
+
+  function showSlide(n) {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === n);
+    });
+  }
+
+  function changeSlide(step) {
+    index = (index + step + slides.length) % slides.length;
+    showSlide(index);
+  }
+
+  if (prev && next) {
+    prev.addEventListener('click', () => changeSlide(-1));
+    next.addEventListener('click', () => changeSlide(1));
+  }
+
+  // Optional autoplay
+  // setInterval(() => changeSlide(1), 5000);
 });
