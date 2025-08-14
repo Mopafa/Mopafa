@@ -32,9 +32,22 @@
 </nav>
 
 <main>
-  <section class="fade-in-section" id="home">
-    <h1>Welcome to MoPaFa</h1>
-    <p>We Manage your livestocks</p>
+  <!-- HOME SLIDESHOW -->
+  <section id="home">
+    <div class="slideshow">
+      <div class="slide active" style="background-image:url('assets/managed.webp')"></div>
+      <div class="slide" style="background-image:url('assets/feature-image.png')"></div>
+      <div class="slide" style="background-image:url('assets/dairy_farm_with_sensors.webp')"></div>
+
+      <div class="slide-overlay"></div>
+      <a class="nav-arrow prev">&#10094;</a>
+      <a class="nav-arrow next">&#10095;</a>
+
+      <div class="hero-content">
+        <h1>Welcome to MoPaFa</h1>
+        <p>We Manage your livestocks</p>
+      </div>
+    </div>
   </section>
 
   <section class="fade-in-section" id="about">
@@ -55,7 +68,7 @@
       </div>
       <div class="card">
         <h3>Trial Run Plan</h3>
-        <p>Dreaming of farming? This is your zero‑risk way to explore before diving in. Let’s build together.</p>
+        <p>Dreaming of farming? This is your zero-risk way to explore before diving in. Let’s build together.</p>
       </div>
     </div>
   </section>
@@ -101,7 +114,6 @@
   <section class="fade-in-section" id="contact">
     <h2>Contact Us</h2>
     <form action="https://formsubmit.co/mopafahelp@outlook.com" method="POST">
-      <!-- Redirect to custom domain after submit -->
       <input type="hidden" name="_next" value="https://mopafa.in/thankyou.html">
       <input type="text" name="name" placeholder="Your Name" required>
       <input type="email" name="email" placeholder="Your Email" required>
@@ -116,8 +128,8 @@
 </footer>
 
 <!-- Sticky footer CTA -->
-<div class="cta-bar" role="region" aria-label="Join MoPaFa call to action">
-  <span>Want to grow with us? Start your livestock co‑ownership journey today.</span>
+<div class="cta-bar">
+  <span>Want to grow with us? Start your livestock co-ownership journey today.</span>
   <a href="#contact" class="btn">Join Now</a>
 </div>
 
