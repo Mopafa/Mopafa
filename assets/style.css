@@ -14,7 +14,6 @@ nav {
   z-index: 999;
 }
 .brand { display: flex; align-items: center; text-decoration: none; }
-/* sane logo sizes */
 nav img.logo { height: 60px; width: auto; margin-left: 12px; padding: 5px 10px; }
 #menu-toggle { display: none; background: #2e7d32; color: #fff; border: none; font-size: 20px; padding: 10px; cursor: pointer; }
 #nav-links { display: flex; align-items: center; gap: 16px; padding-right: 14px; }
@@ -44,8 +43,7 @@ h1, h2 { color: #2e7d32; margin-bottom: 20px; }
 
 /* Forms & buttons */
 form input, form textarea {
-  width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px;
-  font: inherit;
+  width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px; font: inherit;
 }
 .btn, form button {
   display: inline-block; background: #2e7d32; color: #fff; padding: 10px 20px;
@@ -78,69 +76,50 @@ body.has-cta { padding-bottom: 64px; }
 .map-wrap { position: relative; width: 100%; padding-top: 56.25%; border: 0; margin-top: 10px; }
 .map-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 
-/* ===== HOME HERO (full‑bleed) ===== */
-/* IMPORTANT: style.css is inside /assets, so the path is just 'managed.webp' */
-#home {
-  position: relative;
-  width: 100%;
-  max-width: none;      /* override the generic section constraint */
-  margin: 0;            /* full-bleed */
-  padding: 100px 20px;  /* spacing for content */
-  min-height: 100vh;    /* take full viewport height */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  color: #fff;
-  background: url('managed.webp') no-repeat center center;
-  background-size: cover;
-}
-#home::before {
-  content: "";
-  position: absolute; inset: 0;
-  background: rgba(0,0,0,0.35); /* overlay for readability */
-}
-#home > * { position: relative; }
-#home h1, #home p { color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+/* ===== HOME HERO (slideshow, mobile‑safe height) ===== */
+#home { position: relative; width: 100%; max-width: none; margin: 0; padding: 0; }
 
-/* Mobile adjustments */
+/* Use dynamic viewport units, with fallbacks */
+.slideshow {
+  position: relative;
+  height: 100vh;   /* fallback */
+  height: 100svh;  /* iOS small viewport */
+  height: 100dvh;  /* dynamic viewport */
+  overflow: hidden;
+}
+.slide {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  opacity: 0; transition: opacity .6s ease;
+}
+.slide.active { opacity: 1; }
+.slide-overlay { position: absolute; inset: 0; background: rgba(0,0,0,.35); }
+
+.hero-content {
+  position: absolute; inset: 0;
+  display: grid; place-items: center;
+  text-align: center; color: #fff;
+  padding: 0 20px;
+  text-shadow: 0 2px 10px rgba(0,0,0,.5);
+}
+
+.nav-arrow {
+  cursor: pointer;
+  position: absolute; top: 50%; transform: translateY(-50%);
+  font-size: 28px; padding: 10px 16px;
+  color: #fff; background: rgba(0,0,0,.45);
+  border-radius: 50%; z-index: 3; user-select: none;
+}
+.nav-arrow:hover { background: rgba(0,0,0,.65); }
+.nav-arrow.prev { left: 16px; }
+.nav-arrow.next { right: 16px; }
+
+/* Mobile tweaks: shift focal point a bit right to keep subject in view */
 @media (max-width: 768px) {
-  nav img.logo { height: 44px; }       /* smaller logo on mobile */
-  #menu-toggle { display: block; }
-  #nav-links { display: none; flex-direction: column; background: #2c3e50; padding: 10px 0 10px 20px; width: 100%; }
-  #nav-links.open { display: flex; }
-  .card-grid, .feature-grid { flex-direction: column; }
-  section { padding: 36px 16px; }      /* default sections */
-  #home { padding: 80px 16px; }        /* hero spacing on mobile */
+  .slide { background-position: 60% center; }
 }
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
-
-
-.slideshow { position: relative; height: 100vh; overflow: hidden; }
-.slide {
-  position: absolute; inset: 0;
-  background-size: cover; background-position: center;
-  opacity: 0; transition: opacity 0.6s ease;
-}
-.slide.active { opacity: 1; }
-.slide-overlay {
-  position: absolute; inset: 0; background: rgba(0,0,0,0.35);
-}
-.hero-content {
-  position: relative; z-index: 2; color: #fff; text-align: center;
-  top: 50%; transform: translateY(-50%);
-  padding: 0 20px;
-}
-.nav-arrow {
-  cursor: pointer; position: absolute; top: 50%; transform: translateY(-50%);
-  font-size: 28px; padding: 10px 16px;
-  color: #fff; background: rgba(0,0,0,0.4);
-  border-radius: 50%; z-index: 3;
-}
-.nav-arrow:hover { background: rgba(0,0,0,0.6); }
-.nav-arrow.prev { left: 20px; }
-.nav-arrow.next { right: 20px; }
-
