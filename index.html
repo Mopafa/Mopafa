@@ -1,20 +1,27 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MoPaFa – Passive Farming</title>
+
+  <!-- Perf: preload logo -->
+  <link rel="preload" as="image" href="assets/logo.png" />
+  <!-- Optional: provide a tiny favicon to avoid 404s -->
+  <link rel="icon" href="assets/favicon.ico" />
+
   <link rel="stylesheet" href="assets/style.css" />
 </head>
-<body>
+<body class="has-cta">
 
 <nav>
-  <a href="#home">
-    <img src="assets/logo.png" alt="MoPaFa Logo" class="logo">
+  <a href="#home" class="brand">
+    <img src="assets/logo.png" alt="MoPaFa Logo" class="logo" />
   </a>
-  <button id="menu-toggle">&#9776;</button>
-  <div id="nav-links">
+  <button id="menu-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links">
+    &#9776;
+  </button>
+  <div id="nav-links" role="navigation">
     <a href="#home">Home</a>
     <a href="#about">About</a>
     <a href="#products">Products</a>
@@ -24,100 +31,94 @@
   </div>
 </nav>
 
-<section class="fade-in-section" id="home">
-  <h1>Welcome to MoPaFa</h1>
-  <p>Modern Passive Farming – Own livestock, earn passively, and support rural India.Be passive owner, relax, and empower local communities while professionals manage everything for you. Sustainable, impactful, and rewarding farming starts here.</p>
-</section>
+<main>
+  <section class="fade-in-section" id="home">
+    <h1>Welcome to MoPaFa</h1>
+    <p>Modern Passive Farming – Own livestock, earn passively, and support rural India. Be a passive owner, relax, and empower local communities while professionals manage everything for you. Sustainable, impactful, and rewarding farming starts here.</p>
+  </section>
 
-<section class="fade-in-section" id="about">
-  <h2>About Us</h2>
-  <p>MoPaFa is a tech-driven platform enabling urban users to co-own livestock while empowering rural freelance farmers. Together, we build a sustainable farming economy with real income and rural upliftment.</p>
-</section>
+  <section class="fade-in-section" id="about">
+    <h2>About Us</h2>
+    <p>MoPaFa is a tech-driven platform enabling urban users to co-own livestock while empowering rural freelance farmers. Together, we build a sustainable farming economy with real income and rural upliftment.</p>
+  </section>
 
-<section class="fade-in-section" id="products">
-  <h2>Our Products</h2>
-  <div class="card-grid">
-    <div class="card">
-      <h3>Dairy Cow Plan</h3>
-      <p>Plan for 1 or more lactation cycle. Track milk output and earn monthly.</p>
+  <section class="fade-in-section" id="products">
+    <h2>Our Products</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Dairy Cow Plan</h3>
+        <p>Plan for 1 or more lactation cycle. Track milk output and earn monthly.</p>
+      </div>
+      <div class="card">
+        <h3>Goat Farming Plan</h3>
+        <p>Adopt our farmer's goat or own them. Lower cost, faster maturity, moderate returns.</p>
+      </div>
+      <div class="card">
+        <h3>Trial Run Plan</h3>
+        <p>Dreaming of farming? This is your zero‑risk way to explore before diving in. Let’s build together.</p>
+      </div>
     </div>
-    <div class="card">
-      <h3>Goat Farming Plan</h3>
-      <p>Adopt out farmer's Goat or Own them. Lower cost, faster maturity, moderate returns.</p>
-    </div>
-    <div class="card">
-      <h3>Trial run plan</h3>
-      <p>Dreaming of farming? This is your zero-risk way to explore it before diving in and fail, Lets build together</p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section class="fade-in-section" id="features">
-  <h2>Key Features</h2>
-  <div class="feature-grid">
-    <div class="feature-card">
-      <h3>🐄 Passive Cow Ownership</h3>
-      <p>Own a share of real livestock without managing a farm. Earn monthly income with transparency.</p>
+  <section class="fade-in-section" id="features">
+    <h2>Key Features</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h3>🐄 Passive Cow Ownership</h3>
+        <p>Own a share of real livestock without managing a farm. Earn monthly income with transparency.</p>
+      </div>
+      <div class="feature-card">
+        <h3>👨‍🌾 Rural Freelance Farmers</h3>
+        <p>We match your livestock with experienced rural freelancers who care for them ethically.</p>
+      </div>
+      <div class="feature-card">
+        <h3>📈 Monthly Income Dashboard</h3>
+        <p>Track your livestock’s health, yield, and earnings through your secure dashboard.</p>
+      </div>
+      <div class="feature-card">
+        <h3>💼 Tax Treatment</h3>
+        <p>Earnings intended to route as agricultural income via LLP structures. Tax treatment may vary—seek professional advice.</p>
+      </div>
+      <div class="feature-card">
+        <h3>🛰️ Live Tracking & Support</h3>
+        <p>We use QR and GPS to monitor livestock, with veterinary care, feed access, and support.</p>
+      </div>
     </div>
-    <div class="feature-card">
-      <h3>👨‍🌾 Rural Freelance Farmers</h3>
-      <p>We match your livestock with experienced rural freelancers who care for them ethically.</p>
-    </div>
-    <div class="feature-card">
-      <h3>📈 Monthly Income Dashboard</h3>
-      <p>Track your livestock’s health, yield, and earnings through your secure dashboard.</p>
-    </div>
-    <div class="feature-card">
-      <h3>💼 Tax-Free Income</h3>
-      <p>MoPaFa routes earnings as agricultural income via LLP — 100% tax-exempt under Indian law.</p>
-    </div>
-    <div class="feature-card">
-      <h3>🛰️ Live Tracking & Support</h3>
-      <p>We use QR and GPS to monitor livestock, plus veterinary care, feed access, and support.</p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section class="fade-in-section" id="location">
-  <h2>Where We Operate</h2>
-  <p>We run livestock operations in Kerala, Tamil Nadu, and Karnataka. Our headquarters is in Kochi, Kerala.</p>
-  <iframe src="https://maps.google.com/maps?q=kochi&t=&z=10&ie=UTF8&iwloc=&output=embed"
-          width="100%" height="300" frameborder="0" style="border:0;" allowfullscreen></iframe>
-</section>
+  <section class="fade-in-section" id="location">
+    <h2>Where We Operate</h2>
+    <p>We run livestock operations in Kerala, Tamil Nadu, and Karnataka. Our headquarters is in Kochi, Kerala.</p>
+    <div class="map-wrap">
+      <iframe
+        title="MoPaFa HQ – Kochi"
+        src="https://maps.google.com/maps?q=kochi&t=&z=10&ie=UTF8&iwloc=&output=embed"
+        loading="lazy" allowfullscreen>
+      </iframe>
+    </div>
+  </section>
 
-<section class="fade-in-section" id="contact">
-  <h2>Contact Us</h2>
-  <form action="https://formsubmit.co/mopafarms@outlook.com" method="POST">
-   <input type="hidden" name="_next" value="https://mopafa.github.io/Mopafa/thankyou.html">
-    <input type="text" name="name" placeholder="Your Name" required>
-    <input type="email" name="email" placeholder="Your Email" required>
-    <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-    <button type="submit">Send Message</button>
-  </form>
-</section>
+  <section class="fade-in-section" id="contact">
+    <h2>Contact Us</h2>
+    <form action="https://formsubmit.co/mopafarms@outlook.com" method="POST">
+      <!-- Redirect to custom domain after submit -->
+      <input type="hidden" name="_next" value="https://mopafa.in/thankyou.html">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit" class="btn">Send Message</button>
+    </form>
+  </section>
+</main>
 
 <footer>
   &copy; 2025 MoPaFa LLP | Built for Bharat
 </footer>
 
 <!-- Sticky footer CTA -->
-<div style="
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: #2e7d32;
-  color: white;
-  text-align: center;
-  padding: 10px 20px;
-  z-index: 999;
-  font-size: 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;">
-  <span style="margin: 5px 0;">Want to grow with us? Start your livestock co-ownership journey today.</span>
-  <a href='#contact' style='color: white; background: #4caf50; padding: 8px 16px; border-radius: 5px; text-decoration: none; font-weight: bold;'>Join Now</a>
+<div class="cta-bar" role="region" aria-label="Join MoPaFa call to action">
+  <span>Want to grow with us? Start your livestock co‑ownership journey today.</span>
+  <a href="#contact" class="btn">Join Now</a>
 </div>
 
 <script src="assets/script.js"></script>
