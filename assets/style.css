@@ -81,7 +81,7 @@ body.has-cta { padding-bottom: 64px; }
 
 /* Mobile adjustments */
 @media (max-width: 768px) {
-  nav img.logo { height: 40px; }
+  nav img.logo { height: 100px; }
   #menu-toggle { display: block; }
   #nav-links { display: none; flex-direction: column; background: #2c3e50; padding: 10px 0 10px 20px; width: 100%; }
   #nav-links.open { display: flex; }
